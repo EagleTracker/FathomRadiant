@@ -5,8 +5,8 @@ import csv
 # Window items
 layout = [  [sg.Text('Select a file'), sg.FileBrowse()],
             [sg.Text('Output file name'), sg.InputText("Default")],
-            [sg.Radio('.CSV', "RADIO1", default=True)],
-            [sg.Radio('.TXT', "RADIO1", default=False)],
+            [sg.Radio('.CSV', "RADIO", default=True)],
+            [sg.Radio('.TXT', "RADIO", default=False)],
             [sg.Button('Ok'), sg.Button('Cancel')]]
 
 # Create the window
@@ -30,10 +30,10 @@ while True:
         gray_image = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
         # Blur image
-        gray_image = cv2.GaussianBlur(gray_image, (7, 7), 0)
+        blur_image = cv2.GaussianBlur(gray_image, (7, 7), 0)
 
         # Convert to binary image
-        thresh = cv2.adaptiveThreshold(gray_image, 255,
+        thresh = cv2.adaptiveThreshold(blur_image, 255,
                                        cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY_INV, 21, 10)
 
         # Find contours
